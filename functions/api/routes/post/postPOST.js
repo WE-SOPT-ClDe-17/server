@@ -3,7 +3,7 @@ const util = require('../../../lib/util');
 const statusCode = require('../../../constants/statusCode');
 const responseMessage = require('../../../constants/responseMessage');
 const db = require('../../../db/db');
-const { postDB } = require('../../../db');
+const { postDB, myLikePostDB } = require('../../../db');
 
 module.exports = async (req, res) => {
   const { tag, description } = req.body;
@@ -17,6 +17,7 @@ module.exports = async (req, res) => {
     client = await db.connect(req);
 
     const { postId } = await postDB.createPost(client, tag, description);
+    const { myLikePostId } = await myLikePostDB.createMyLikePost(client, postId);
 
     res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.CREATE_PROJECT_SUCCESS, { id: postId }));
 
