@@ -3,7 +3,9 @@ const convertSnakeToCamel = require('../lib/convertSnakeToCamel');
 const getAllPosts = async (client) => {
   const { rows } = await client.query(
     `
-        SELECT * FROM "post"
+    SELECT *, u.user_name, p.collected_money/p.target_money*100 AS achieved_percentage, ttl FROM "post" p
+    LEFT JOIN "user" u on u.user_id = p.user_id
+    ORDER BY p.post_id
     `,
   );
 
@@ -11,17 +13,22 @@ const getAllPosts = async (client) => {
 };
 
 const createPost = async (client, tag, description) => {
-  const title = description.substr(0, 10); // 임시 title: 요약의 1~10번째 글
-  const ttl = Math.floor(Math.random() * 24) + 1; // 임시 ttl: 1~24 중 random number
+  const title = '유저의 프로젝트 Title';
+  const thumbnail = 'https://firebasestorage.googleapis.com/v0/b/tumblbug-sopt.appspot.com/o/post%2Fpost1.png?alt=media';
+  const ttl = 19;
+  const targetMoney = 3000000;
+  const collectedMoney = 6000000;
+  const userId = 1;
+
   const { rows } = await client.query(
     `
     INSERT INTO "post"
-    (tag, title, description, ttl)
+    (thumbnail, tag, title, description, ttl, target_money, collected_money, user_id)
     VALUES
-    ($1, $2, $3, $4)
+    ($1, $2, $3, $4, $5, $6, $7, $8)
     RETURNING *
     `,
-    [tag, title, description, ttl],
+    [thumbnail, tag, title, description, ttl, targetMoney, collectedMoney, userId],
   );
 
   return convertSnakeToCamel.keysToCamel(rows[0]);
