@@ -2,25 +2,24 @@
 
 ❄ 이 동 근 박 현 지 ❄
 
-***
+---
 
 ## 프로젝트 폴더링
-
 
 ```
 📂 functions
   📂 api
     📂 routes
-      📂 like
-        📜 index.js
-        📜 {likeapi...}.js
       📂 myLikePost
         📜 index.js
-        📜 {mylikeapi...}.js
+        📜 likePOST.js
+        📜 myLikePostGET.js
       📂 post
-        📜 index.js        
-        📜 postGET.js        
-        📜 postPOST.js        
+        📜 index.js
+        📜 postGET.js
+        📜 postPOST.js
+      📜 index.js
+    📜 index.js
   📂 config
     📜 dbConfig.js
   📂 constants
@@ -29,9 +28,9 @@
   📂 db
     📜 db.js
     📜 index.js
+    📜 myLikePost.js
     📜 post.js
-    📜 {mylikepost...}.js
-    📜 {like...}.js
+    📜 user.js
   📂 lib
     📜 convertSnakeToCamel.js
     📜 util.js
@@ -41,6 +40,7 @@
   📜 .eslintrc.js
   📜 .gitignore
   📜 .prettierrc.js
+  📜 package-lock.json
   📜 package.json
 📦 .firebaserc
 📦 .gitignore
@@ -48,24 +48,16 @@
 📦 README.md
 ```
 
-***
-
-
+---
 
 ## git
-
-
 
 ### git branch
 
 - api 별로 브랜치 만들어서 완성 → `dev` 브랜치에 pull request → `dev` 브랜치에서 `main`으로 pull request 보내기
 - merge 할 때는 상대방의 코드리뷰를 받고 하기
 
-
-
 ### git commit message 컨벤션
-
-
 
 ```
 {type}: {message}
@@ -73,7 +65,6 @@
 [예시]
 add: 프로젝트 생성 API 추가
 ```
-
 
 - ✅ [CHORE] : 코드 수정, 내부 파일 수정
 - 🍱 [ADD] : 새로운 파일 추가
@@ -85,30 +76,18 @@ add: 프로젝트 생성 API 추가
 - ⏪️ [RENAME] : 파일 이름 변경이 있을 때 사용합니다.
 - 🔀 [MERGE]: 다른브렌치를 merge 할 때 사용합니다.
 
-
-
-***
-
-
+---
 
 ## 코드 컨벤션
-
-
 
 - prettierrc 파일 같이 써서 형태 통일하기
 - 카멜케이스 사용
 - 비구조화 할당
 - 화살표 함수
 
-
-
-***
-
-
+---
 
 ## API 문서
-
-
 
 ```
 1. 파트원 한 명 당 최소 2개의 endpoint
@@ -116,7 +95,4 @@ add: 프로젝트 생성 API 추가
 3. 각각의 endpoint에 예상되는 request / response 형식
 ```
 
-
-
 [🚀 Notion API 문서](https://geeneve.notion.site/API-644dc98988414a5abb577bb8dc71ad03)
-
